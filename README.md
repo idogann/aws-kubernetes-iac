@@ -45,7 +45,7 @@ graph TD
     Pod1 & Pod2 -.->|Pull Image| ECR
 ```
 
-- **Networking:** 3-tier VPC with Public and Private subnets.
+- **Networking:** 2-tier VPC with Public and Private subnets.
 - **Security:** Worker nodes are isolated in Private Subnets; egress traffic is managed via a **NAT Gateway**.
 - **Orchestration:** Managed **Amazon EKS** cluster using **AWS Spot Instances** for 70-90% cost savings.
 - **Automated Delivery:** Infrastructure-as-Code automatically builds and pushes Docker images to **Amazon ECR** on every deployment.
