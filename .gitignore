@@ -10,6 +10,7 @@ infra/node_modules/
 infra/package-lock.json
 *.tfstate*
 stack.json
+outputs.txt
 
 # Application Noise
 app/__pycache__/
