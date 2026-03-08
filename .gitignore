@@ -1,0 +1,21 @@
+# Secrets
+.env
+*.pem
+kubeconfig.json
+
+# Infrastructure State & Providers
+.pulumi/
+infra/Pulumi.*.yaml
+infra/node_modules/
+infra/package-lock.json
+*.tfstate*
+stack.json
+
+# Application Noise
+app/__pycache__/
+app/venv/
+*.log
+
+# OS Noise
+.DS_Store
+Thumbs.db

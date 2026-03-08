@@ -1,0 +1,142 @@
+Current stack is dev:
+    Managed by Ido-desktop
+    Last updated: 3 minutes ago (2026-03-08 23:17:02.8250296 +0200 IST)
+    Pulumi version used: v3.225.1
+Current stack resources (68):
+    TYPE                                                                NAME
+    pulumi:pulumi:Stack                                                 eks-holidays-api-dev
+    ├─ aws:ecr/repository:Repository                                    holidays-api
+    │     ID: holidays-api-34ef6e5
+    ├─ aws:iam/role:Role                                                eks-node-role
+    │     ID: eks-node-role-d489e18
+    ├─ awsx:ec2:Vpc                                                     eks-vpc
+    │  └─ aws:ec2/vpc:Vpc                                               eks-vpc
+    │     │  ID: vpc-06708b6407f522787
+    │     ├─ aws:ec2/subnet:Subnet                                      eks-vpc-private-3
+    │     │  │  ID: subnet-0e2c15827540233e3
+    │     │  └─ aws:ec2/routeTable:RouteTable                           eks-vpc-private-3
+    │     │     │  ID: rtb-0839bd199531357c3
+    │     │     ├─ aws:ec2/routeTableAssociation:RouteTableAssociation  eks-vpc-private-3
+    │     │     │     ID: rtbassoc-044e686f27bd8a3c5
+    │     │     └─ aws:ec2/route:Route                                  eks-vpc-private-3
+    │     │           ID: r-rtb-0839bd199531357c31080289494
+    │     ├─ aws:ec2/internetGateway:InternetGateway                    eks-vpc
+    │     │     ID: igw-0651ee49ffbcee3fb
+    │     ├─ aws:ec2/subnet:Subnet                                      eks-vpc-private-1
+    │     │  │  ID: subnet-09384ed096e4b8036
+    │     │  └─ aws:ec2/routeTable:RouteTable                           eks-vpc-private-1
+    │     │     │  ID: rtb-05d49660bef0a628b
+    │     │     ├─ aws:ec2/routeTableAssociation:RouteTableAssociation  eks-vpc-private-1
+    │     │     │     ID: rtbassoc-0f984ab6b1b276d9e
+    │     │     └─ aws:ec2/route:Route                                  eks-vpc-private-1
+    │     │           ID: r-rtb-05d49660bef0a628b1080289494
+    │     ├─ aws:ec2/subnet:Subnet                                      eks-vpc-private-2
+    │     │  │  ID: subnet-097638b9fec775c52
+    │     │  └─ aws:ec2/routeTable:RouteTable                           eks-vpc-private-2
+    │     │     │  ID: rtb-0e84269127379c67e
+    │     │     ├─ aws:ec2/routeTableAssociation:RouteTableAssociation  eks-vpc-private-2
+    │     │     │     ID: rtbassoc-0d174af2f972b88f4
+    │     │     └─ aws:ec2/route:Route                                  eks-vpc-private-2
+    │     │           ID: r-rtb-0e84269127379c67e1080289494
+    │     ├─ aws:ec2/subnet:Subnet                                      eks-vpc-public-1
+    │     │  │  ID: subnet-073a114ac5b7ecd91
+    │     │  ├─ aws:ec2/routeTable:RouteTable                           eks-vpc-public-1
+    │     │  │  │  ID: rtb-060612450a9a3a6cc
+    │     │  │  ├─ aws:ec2/routeTableAssociation:RouteTableAssociation  eks-vpc-public-1
+    │     │  │  │     ID: rtbassoc-0885145440f5ad7f1
+    │     │  │  └─ aws:ec2/route:Route                                  eks-vpc-public-1
+    │     │  │        ID: r-rtb-060612450a9a3a6cc1080289494
+    │     │  ├─ aws:ec2/eip:Eip                                         eks-vpc-1
+    │     │  │     ID: eipalloc-0985cc25f371acab0
+    │     │  └─ aws:ec2/natGateway:NatGateway                           eks-vpc-1
+    │     │        ID: nat-0b2190bd6e26c504f
+    │     ├─ aws:ec2/subnet:Subnet                                      eks-vpc-public-2
+    │     │  │  ID: subnet-09075b1f2321d2ef8
+    │     │  └─ aws:ec2/routeTable:RouteTable                           eks-vpc-public-2
+    │     │     │  ID: rtb-059a3e6d47995cbb0
+    │     │     ├─ aws:ec2/route:Route                                  eks-vpc-public-2
+    │     │     │     ID: r-rtb-059a3e6d47995cbb01080289494
+    │     │     └─ aws:ec2/routeTableAssociation:RouteTableAssociation  eks-vpc-public-2
+    │     │           ID: rtbassoc-068b81cd40b82a853
+    │     └─ aws:ec2/subnet:Subnet                                      eks-vpc-public-3
+    │        │  ID: subnet-0b7aca88b764806b9
+    │        └─ aws:ec2/routeTable:RouteTable                           eks-vpc-public-3
+    │           │  ID: rtb-0779c9e8c033f666b
+    │           ├─ aws:ec2/route:Route                                  eks-vpc-public-3
+    │           │     ID: r-rtb-0779c9e8c033f666b1080289494
+    │           └─ aws:ec2/routeTableAssociation:RouteTableAssociation  eks-vpc-public-3
+    │                 ID: rtbassoc-08cacac88e2c1a6d3
+    ├─ aws:iam/rolePolicyAttachment:RolePolicyAttachment                eks-node-policy-2
+    │     ID: eks-node-role-d489e18/arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+    ├─ aws:iam/rolePolicyAttachment:RolePolicyAttachment                eks-node-policy-0
+    │     ID: eks-node-role-d489e18/arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+    ├─ aws:iam/rolePolicyAttachment:RolePolicyAttachment                eks-node-policy-1
+    │     ID: eks-node-role-d489e18/arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+    ├─ awsx:ecr:Image                                                   holidays-api
+    │  └─ docker-build:index:Image                                      14ab35b3-container
+    │        ID: sha256:b31f816c2536b595cb814242e35e97595e9771b52f2912ff6668117797020093
+    ├─ eks:index:Cluster                                                eks-cluster
+    │  ├─ eks:index:ServiceRole                                         eks-cluster-eksRole
+    │  │  ├─ aws:iam/role:Role                                          eks-cluster-eksRole-role
+    │  │  │     ID: eks-cluster-eksRole-role-9e0104b
+    │  │  └─ aws:iam/rolePolicyAttachment:RolePolicyAttachment          eks-cluster-eksRole-4b490823
+    │  │        ID: eks-cluster-eksRole-role-9e0104b/arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+    │  ├─ aws:ec2/securityGroup:SecurityGroup                           eks-cluster-eksClusterSecurityGroup
+    │  │     ID: sg-07a5b64084d44da29
+    │  ├─ aws:ec2/securityGroupRule:SecurityGroupRule                   eks-cluster-eksClusterInternetEgressRule
+    │  │     ID: sgrule-2991213454
+    │  ├─ aws:eks/cluster:Cluster                                       eks-cluster-eksCluster
+    │  │     ID: eks-cluster-eksCluster-486727e
+    │  ├─ pulumi:providers:kubernetes                                   eks-cluster-eks-k8s
+    │  │     ID: 00be9e7e-582b-48c2-8514-8371557ef147
+    │  ├─ aws:ec2/securityGroup:SecurityGroup                           eks-cluster-nodeSecurityGroup
+    │  │     ID: sg-070a3f65613f47e2f
+    │  ├─ kubernetes:core/v1:ConfigMap                                  eks-cluster-nodeAccess
+    │  │     ID: kube-system/aws-auth
+    │  ├─ aws:ec2/securityGroupRule:SecurityGroupRule                   eks-cluster-eksExtApiServerClusterIngressRule
+    │  │     ID: sgrule-3535800495
+    │  ├─ aws:ec2/securityGroupRule:SecurityGroupRule                   eks-cluster-eksNodeInternetEgressRule
+    │  │     ID: sgrule-2457422024
+    │  ├─ aws:ec2/securityGroupRule:SecurityGroupRule                   eks-cluster-eksNodeIngressRule
+    │  │     ID: sgrule-3150431079
+    │  ├─ aws:ec2/securityGroupRule:SecurityGroupRule                   eks-cluster-eksClusterIngressRule
+    │  │     ID: sgrule-4130093980
+    │  ├─ eks:index:VpcCniAddon                                         eks-cluster-vpc-cni
+    │  │  └─ aws:eks/addon:Addon                                        eks-cluster-vpc-cni
+    │  │        ID: eks-cluster-eksCluster-486727e:vpc-cni
+    │  ├─ aws:ec2/securityGroupRule:SecurityGroupRule                   eks-cluster-eksNodeClusterIngressRule
+    │  │     ID: sgrule-1343459636
+    │  └─ aws:eks/addon:Addon                                           eks-cluster-kube-proxy
+    │        ID: eks-cluster-eksCluster-486727e:kube-proxy
+    ├─ pulumi:providers:kubernetes                                      k8s-provider
+    │     ID: 7b3197f0-276b-4997-ac5e-967bc2bfb099
+    ├─ eks:index:ManagedNodeGroup                                       eks-managed-ng
+    │  └─ aws:eks/nodeGroup:NodeGroup                                   eks-managed-ng
+    │        ID: eks-cluster-eksCluster-486727e:eks-spot-nodes
+    ├─ kubernetes:core/v1:Namespace                                     app-ns
+    │     ID: holidays-api
+    ├─ kubernetes:core/v1:Service                                       app-svc
+    │     ID: holidays-api/app-svc-40c1afca
+    ├─ kubernetes:apps/v1:Deployment                                    app-deploy
+    │     ID: holidays-api/app-deploy-7d8e2808
+    ├─ pulumi:providers:aws                                             default_7_21_0
+    │     ID: 2375a323-2afc-44b5-83b1-b2add5c0e984
+    ├─ pulumi:providers:awsx                                            default_3_3_0
+    │     ID: c6e2678f-de26-43fa-a996-5c72beb20ad8
+    ├─ pulumi:providers:aws                                             default_7_15_0
+    │     ID: 6f6117f1-2553-4065-8cb6-a8e0032197ae
+    ├─ pulumi:providers:docker-build                                    default_0_0_14
+    │     ID: 692d84da-025c-4593-911a-f9100101c75c
+    ├─ pulumi:providers:eks                                             default_4_2_0
+    │     ID: fe19d78c-25ba-49ae-bc27-021842faa251
+    ├─ pulumi:providers:pulumi                                          default
+    │     ID: e0e59ea7-7ce8-4189-9198-47110c06c083
+    └─ pulumi:providers:aws                                             default_7_14_0
+          ID: d662376c-f76b-4fc7-9e35-a6c81450cca0
+
+Current stack outputs (2):
+    OUTPUT      VALUE
+    kubeconfig  {"apiVersion":"v1","clusters":[{"cluster":{"certificate-authority-data":"LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJWE90R3JYZUJlUWt3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TmpBek1EZ3lNVEEyTlRoYUZ3MHpOakF6TURVeU1URXhOVGhhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURCREh3aXZzRjE2VENuZXVyM1JPVlNBZ0tMaTRud05zRzJVOW9lUGhDMlJlS2l6QmhjaEpleEhmRFAKZHFscnVKNlFtdzl0T2lINUx6ZEZ5VGlrcUxqNmFBUjNTcTdRREFpTjRnM1ArK2dkV3lidzh1QUREdnNuUXlaWAorYUNtR2JDd0FNcXgwc2Y2OUU1S2lweS9lYlNlZEdFUUMyS1d2dHdCTlk1K244MVU0bHQ5Y24zQlF6SUh4dFVHCjJObGdhNE9mWDVPdGtyYUZuK3ByMVFoQjZ6U1JRLytMemk0V0ZZNWIxbXV5TjQ4akVJZTQ2TUhacjcvSnhVYk4KdlFwU2tLa0sxY0JSdUhyUlpsNk5CMUpJS3E1V3JISWhGbGdQc0NwT0ZOWDRwQ2VEYmIrN2hWVFFGN1ZPbDd0SApBQnMvc0FSRUJBc01TM0N2Q0E5NkF3TTgrSnMzQWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJSSUdBUlpDdzZuTW0xVmxlMjJHVm56UEdZeWtEQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ21nNm1YaXdSNwpTSFhxSVB1YjkxM3FZckxzNWw4dWV3bGQvdWJBR0U0RTlZTFNON0NQZDB2dWdPYjZoTW1WZzlMK3NMbXVpUEZwCkV3cXgzZFVSeEY0dW54YVNEcXdvTkNiQUtMSThaVVV3WkdXOTJidEpzRmp0NlpPbW8yZmgzaS9Vekw1ejFBL2wKbzRaQXRacWlXOVRlN21WQ0JKYStQdnZNbUd4VFI3YUtXaW5Za0ZZUFlPMS9tYWY5MGVQbG1qdkw5RXM0RjZkdApjUzBQSXFZL0p2eWs4cVZtc1RYUXFBdUtrbi9PMHZZU01oRVZVMTByYjFCOFRtT3lpSjNONUNoWWhPRHl5cmJlCllNVjRqWGRNZUVYZjRTbDJDMjdZeDdPRUJIQ08rZ3ZwR1VNZ0xOMk9hRkpGTTBjVm9wRE5kTFhXRFEwdHJzcTkKYU9oYVNzUStWRkZLCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K","server":"https://E17263BF686F6585081CAC09471D9CA7.yl4.eu-west-1.eks.amazonaws.com"},"name":"kubernetes"}],"contexts":[{"context":{"cluster":"kubernetes","user":"aws"},"name":"aws"}],"current-context":"aws","kind":"Config","users":[{"name":"aws","user":{"exec":{"apiVersion":"client.authentication.k8s.io/v1beta1","args":["--region","eu-west-1","eks","get-token","--cluster-name","eks-cluster-eksCluster-486727e","--output","json"],"command":"aws","env":[{"name":"KUBERNETES_EXEC_INFO","value":"{\"apiVersion\": \"client.authentication.k8s.io/v1beta1\"}"}]}}}]}
+    url         abaace41402134c8688deee4820cae78-1480088348.eu-west-1.elb.amazonaws.com
+
+Use `pulumi stack select` to change stack; `pulumi stack ls` lists known ones
