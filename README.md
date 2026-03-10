@@ -12,37 +12,44 @@ graph TD
         Hebcal[Hebcal REST API]
     end
 
-    subgraph AWS_Cloud [AWS Cloud - eu-west-1]
-        subgraph VPC [VPC - 10.0.0.0/16]
-            
-            subgraph Public_Subnet [Public Subnet]
-                ALB[AWS Load Balancer]
-                NAT[NAT Gateway]
+    subgraph AWS_Region [AWS Region: eu-west-1]
+        ECR[(Amazon ECR)]
+        
+        subgraph VPC [VPC: 10.0.0.0/16]
+            ALB[AWS Load Balancer - Multi-AZ]
+
+            subgraph AZ_1 [Availability Zone A]
+                subgraph Public_Subnet_A ["Pub. Subnet: 10.0.0.0/19"]
+                    NAT[NAT Gateway]
+                end
+                subgraph Private_Subnet_A ["Priv. Subnet: 10.0.128.0/19"]
+                    subgraph Node_1 ["EKS Worker Node"]
+                        Pod1[App Pod 1]
+                    end
+                end
             end
 
-            subgraph Private_Subnet [Private Subnet]
-                subgraph EKS_Cluster [EKS Cluster]
-                    subgraph Node_Group [Spot Node Group]
-                        Pod1[App Pod 1]
+            subgraph AZ_2 ["Availability Zone B &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"]
+                subgraph Private_Subnet_B ["Priv. Subnet: 10.0.160.0/19"]
+                    subgraph Node_2 ["EKS Worker Node"]
                         Pod2[App Pod 2]
                     end
                 end
             end
         end
-
-        ECR[(Amazon ECR)]
     end
 
-    %% Ingress Flow (Incoming)
-    User -->|HTTPS| ALB
-    ALB -->|Forward| Pod1 & Pod2
+    %% Ingress Flow
+    User -->|HTTPS:443| ALB
+    ALB -->|AZ-Aware Routing| Pod1 & Pod2
 
-    %% Egress Flow (Outgoing)
-    Pod1 & Pod2 -->|Outbound Request| NAT
-    NAT -->|Proxy to Internet| Hebcal
+    %% Egress Flow (The Strategic Part)
+    Pod1 -->|Local Egress| NAT
+    Pod2 -->|Cross-AZ Egress| NAT
+    NAT -->|Outbound| Hebcal
 
-    %% Image Management
-    Pod1 & Pod2 -.->|Pull Image| ECR
+    %% Registry Flow
+    Pod1 & Pod2 -.->|Image Pull| ECR
 ```
 
 - **Networking:** 2-tier VPC with Public and Private subnets.
