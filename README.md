@@ -18,22 +18,24 @@ graph TD
         subgraph VPC [VPC: 10.0.0.0/16]
             ALB[AWS Load Balancer - Multi-AZ]
 
-            subgraph AZ_1 [Availability Zone A]
-                subgraph Public_Subnet_A ["Pub. Subnet: 10.0.0.0/19"]
+            subgraph AZ_A [Availability Zone A]
+                subgraph Public_Subnet_A ["Pub. Subnet: 10.0.32.0/20"]
                     NAT[NAT Gateway]
                 end
-                subgraph Private_Subnet_A ["Priv. Subnet: 10.0.128.0/19"]
-                    subgraph Node_1 ["EKS Worker Node"]
-                        Pod1[App Pod 1]
-                    end
+                subgraph Private_Subnet_A ["Priv. Subnet: 10.0.0.0/19"]
+                    Pod1[App Pod]
                 end
             end
 
-            subgraph AZ_2 ["Availability Zone B &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"]
-                subgraph Private_Subnet_B ["Priv. Subnet: 10.0.160.0/19"]
-                    subgraph Node_2 ["EKS Worker Node"]
-                        Pod2[App Pod 2]
-                    end
+            subgraph AZ_B [Availability Zone B]
+                subgraph Private_Subnet_B ["Priv. Subnet: 10.0.64.0/19"]
+                    Pod2[App Pod]
+                end
+            end
+
+            subgraph AZ_C [Availability Zone C]
+                subgraph Private_Subnet_C ["Priv. Subnet: 10.0.128.0/19"]
+                    %% Ready for Scaling
                 end
             end
         end
@@ -52,7 +54,7 @@ graph TD
     Pod1 & Pod2 -.->|Image Pull| ECR
 ```
 
-- **Networking:** 2-tier VPC with Public and Private subnets.
+- **Networking:** High-availability **3-AZ VPC topology** with isolated Private Subnets for compute workloads.
 - **Security:** Worker nodes are isolated in Private Subnets; egress traffic is managed via a **NAT Gateway**.
 - **Orchestration:** Managed **Amazon EKS** cluster using **AWS Spot Instances** for 70-90% cost savings.
 - **Automated Delivery:** Infrastructure-as-Code automatically builds and pushes Docker images to **Amazon ECR** on every deployment.
